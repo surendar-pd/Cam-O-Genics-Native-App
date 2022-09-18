@@ -29,7 +29,7 @@ const NewPasswordScreen = () => {
                 />
             </View>
             <View className="w-full">
-                <TouchableOpacity onPress={() => navigation.navigate("Lottie")} className="w-full flex items-center bg-[#C3BEF7] p-4 rounded">
+                <TouchableOpacity onPress={() => navigation.navigate("Lottie",{msg:"Password changed successfully",nav:"Login"})} className="w-full flex items-center bg-[#C3BEF7] p-4 rounded">
                 <Text style={{fontFamily: "Montserrat_500Medium"}} className="">Reset Password</Text>
                 </TouchableOpacity>
             </View>

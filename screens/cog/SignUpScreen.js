@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Alert, Modal, Pressable } from 'react-native'
 import React ,{useState, useEffect} from 'react'
 import {useNavigation} from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,12 +9,8 @@ import config from '../../config'
 
 const SignUpScreen = () => {
 
-    const navigation = useNavigation()
-
-    // const [fullName, setFullName] = useState("surendar");
-    // const [cogcId, setCogcId] = useState("COG123456");
-    // const [email, setEmail] = useState("sp2735@srmist.edu.in");
-    // const [password, setPassword] = useState("suren@007");
+    const navigation = useNavigation();
+    const [modalVisible, setModalVisible] = useState(false);
 
     const [input, setInput] = useState({
         fullName: "",
@@ -37,7 +33,7 @@ const SignUpScreen = () => {
         try {
             const res = await axios.post("https://cogc-dev.onrender.com/api/auth/signup/cog", {...input})
             console.log(res.data);
-            navigation.navigate("Lottie")
+            navigation.navigate("Lottie",{msg:"Account created successfuly",nav:"Home"})
         } catch (err) {
             const {data} = err.response;
             if (data.message === "app/request-validation-error"){
@@ -51,65 +47,86 @@ const SignUpScreen = () => {
                     setError(`${data.data.path[0]}.email`)
                 }
             }else if (data.message === "auth/account-already-exists"){
-                console.log("already exixts")
+                setModalVisible(true)
             }
             console.log(data)
         }
     }
 
+
+
     return (
         <SafeAreaView className="flex-1 items-center justify-center gap-4 p-8">
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                // statusBarTranslucent={true}
+                // onRequestClose={() => {
+                // Alert.alert('Modal has been closed.');
+                // setModalVisible(!modalVisible);
+                // }}
+                >
+                {/* <View className="bg-[#FF9494] flex-row p-4 items-center justify-between rounded"> */}
+                <View className="bg-[#ffc10740] flex-row p-4 items-center justify-between">
+                    <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-[#ffc107]">Account already exists</Text>
+                    <Pressable
+                    onPress={() => setModalVisible(!modalVisible)}>
+                    <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-[#ffc107]">Close</Text>
+                    </Pressable>
+                </View>
+            </Modal>
         <View className="w-full">
             <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-4xl">Sign Up</Text>
         </View>
         <View className="w-full">
             <View className="flex-row items-center gap-2 pb-2">
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-gray-500 mb-2">Name</Text>
-                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "fullName" ? 'block' : 'hidden'}`}>Cannot be empty</Text>
+                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "fullName" ? 'block' : 'hidden'}`}>Field cannot be empty</Text>
             </View>
             <TextInput
                 defaultValue={input.fullName}
                 onChangeText={handleChange('fullName')}
-                className="w-full p-2 border border-gray-500 rounded"
+                className={`w-full p-2 border ${error === "fullName" ? 'border-red-500' : 'border-gray-500'} rounded`}
                 placeholder=""
             />
         </View>
         <View className="w-full">
             <View className="flex-row items-center gap-2 pb-2">
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-gray-500 mb-2">COG ID</Text>
-                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "cogcId" ? 'block' : 'hidden'}`}>Cannot be empty</Text>
+                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "cogcId" ? 'block' : 'hidden'}`}>Field cannot be empty</Text>
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "cogcId.pattern" ? 'block' : 'hidden'}`}>Invalid ID </Text>
             </View>
             <TextInput
             defaultValue={input.cogcId}
             onChangeText={handleChange('cogcId')}
-            className="w-full p-2 border border-gray-500 rounded"
+            className={`w-full p-2 border rounded ${error === "cogcId" || error === "cogcId.pattern" ? 'border-red-500' : 'border-gray-500'}`}
             placeholder=""
                 />
         </View>
         <View className="w-full">
             <View className="flex-row items-center gap-2 pb-2">
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-gray-500 mb-2">Email</Text>
-                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "email" ? 'block' : 'hidden'}`}>Cannot be empty</Text>
+                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "email" ? 'block' : 'hidden'}`}>Field cannot be empty</Text>
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "email.pattern" || error === "email.email" ? 'block' : 'hidden'}`}>Use official email ID</Text>
             </View>
             <TextInput
             defaultValue={input.email}
             onChangeText={handleChange('email')}
-            className="w-full p-2 border border-gray-500 rounded"
+            className={`w-full p-2 border border-gray-500 rounded ${error === "email" || error === "email.pattern" ? 'border-red-500' : 'border-gray-500'}`}
             placeholder=""
                 />
         </View>
         <View className="w-full">
             <View className="flex-row items-center gap-2 pb-2">
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-gray-500 mb-2">Password</Text>
-                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "password" ? 'block' : 'hidden'}`}>Cannot be empty</Text>
+                <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "password" ? 'block' : 'hidden'}`}>Field cannot be empty</Text>
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className={`text-red-500 text-xs mb-2 ${error === "password.pattern" ? 'block' : 'hidden'}`}>Minimum 6 characters, with number, text, and special characters</Text>
             </View>
             <TextInput
             defaultValue={input.password}
             onChangeText={handleChange('password')}
-            className="w-full p-2 border border-gray-500 rounded"
+            className={`w-full p-2 border border-gray-500 rounded ${error === "password" || error === "password.pattern" ? 'border-red-500' : 'border-gray-500'}`}
             placeholder=""
             />
         </View>
