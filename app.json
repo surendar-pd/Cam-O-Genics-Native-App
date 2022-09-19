@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "deliveroo",
-    "slug": "deliveroo",
+    "name": "Camogenics",
+    "slug": "camogenics",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/splash.png",
@@ -24,10 +24,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#000"
-      }
+      },
+      "package": "com.s_p_d.camogenics"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

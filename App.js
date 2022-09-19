@@ -7,7 +7,9 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from './screens/cog/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
+import HomeScreen from './screens/cog/HomeScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { 
   Montserrat_100Thin,
   Montserrat_100Thin_Italic,
@@ -39,12 +41,31 @@ import CsignUpScreen from './screens/cogc/CsignUpScreen';
 import OtpScreen from './screens/OtpScreen';
 import NewPasswordScreen from './screens/NewPasswordScreen';
 import LottieScreen from './screens/LottieScreen';
+import { useEffect, useState, useMemo } from 'react';
 
 const Stack = createStackNavigator();
 
 export default function App() {
 
-  const isSignedIn = false;
+  // const isSignedIn = false;
+  // const [user, setUser] = useState();
+  const [user, setUser] = useState(AsyncStorage.getItem('user'));
+
+  const getData = async () => {
+    try {
+      const token = await AsyncStorage.getItem('user')
+      if(token !== null) {
+        setUser(token)
+      }
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+  useEffect(() => {
+    getData();
+    console.log("user",user)
+  },[user])
 
   let [fontsLoaded, error] = useFonts({
     Montserrat_100Thin,
@@ -83,7 +104,7 @@ export default function App() {
             }}
             >
               {
-                isSignedIn ? (
+                user != "false" ? (
                   <>
                     <Stack.Screen name="Home" component={HomeScreen}/>
                   </>
@@ -98,7 +119,8 @@ export default function App() {
                     <Stack.Screen name="Csignup" component={CsignUpScreen}/>
                     <Stack.Screen name="Otp" component={OtpScreen}/>
                     <Stack.Screen name="Newpassword" component={NewPasswordScreen}/>
-                    <Stack.Screen options={{ gestureEnabled: false }} name="Lottie" component={LottieScreen}/>
+                    <Stack.Screen name="Lottie" component={LottieScreen}/>
+                    {/* <Stack.Screen name="Home" component={HomeScreen}/> */}
                   </>
                 )
               }

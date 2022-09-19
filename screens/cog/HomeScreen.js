@@ -1,37 +1,27 @@
 import { View, Text } from 'react-native'
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { NavigationContainer } from '@react-navigation/native';
 import { AnimatedTabBarNavigator } from "react-native-animated-nav-tab-bar";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ChatsScreen from './ChatsScreen';
-import SettingsScreen from './SettingsScreen';
+// import ProfileScreen from './ProfileScreen';
+import SettingsScreen from '../SettingsScreen';
 import { Ionicons } from '@expo/vector-icons';
+import EventsScreen from './EventsScreen';
+import EventDetailsScreen from './EventDetailsScreen';
+import {ProfileScreenNavigator, EventsScreenNavigator, QrScreenNavigator, TasksScreenNavigator} from './CustomNavigation'
 
 
-const Tab = createBottomTabNavigator();
 const Tabs = AnimatedTabBarNavigator();
 
 
 const HomeScreen = () => {
 
     return (
-        // <NavigationContainer independent={true}>
-        //     <SafeAreaView className="flex-1">
-        //         <Tab.Navigator screenOptions={{headerShown: false}}>
-        //             <Tab.Screen  name="Chat" component={ChatsScreen} />
-        //             <Tab.Screen name="Settings" component={SettingsScreen} />
-        //         </Tab.Navigator>
-        //     </SafeAreaView>
-        //     <StatusBar style="dark"/>
-        // </NavigationContainer>
         <SafeAreaView className="flex-1">
             <Tabs.Navigator
                 tabBarOptions={{
                     activeTintColor: "#8A4FFF",
                     inactiveTintColor: "#222222",
-                    activeBackgroundColor:"#C3BEF7",
+                    activeBackgroundColor:"#C3BEF780",
                     labelStyle:{
                         fontFamily:'Montserrat_500Medium'
                     }
@@ -43,48 +33,6 @@ const HomeScreen = () => {
                     dotSize: 'small',
                 }}
                 >
-                <Tabs.Screen
-                    name="Chat"
-                    options={{
-                        tabBarIcon: ({ focused, color, size }) => (
-                            <Ionicons 
-                                name="chatbox-outline" 
-                                size={20}
-                                color={focused ? color : "#222222"}
-                                focused={focused}
-                                // color="black" 
-                            />
-                        )
-                    }}
-                    component={ChatsScreen} />
-                <Tabs.Screen 
-                    name="Search"
-                    options={{
-                        tabBarIcon: ({ focused, color, size }) => (
-                            <Ionicons 
-                                name="search-outline" 
-                                size={20}
-                                color={focused ? color : "#222222"}
-                                focused={focused}
-                                // color="black" 
-                            />
-                        )
-                    }}
-                    component={ChatsScreen} />
-                <Tabs.Screen 
-                    name="Settings"
-                    options={{
-                        tabBarIcon: ({ focused, color, size }) => (
-                            <Ionicons 
-                                name="settings-outline" 
-                                size={20}
-                                color={focused ? color : "#222222"}
-                                focused={focused}
-                                // color="black" 
-                            />
-                        )
-                    }}
-                    component={SettingsScreen} />
                 <Tabs.Screen
                     name="Profile"
                     options={{
@@ -98,8 +46,60 @@ const HomeScreen = () => {
                             />
                         )
                     }}
+                    component={ProfileScreenNavigator} />
+                <Tabs.Screen 
+                    name="Events"
+                    options={{
+                        tabBarIcon: ({ focused, color, size }) => (
+                            <Ionicons 
+                                name="calendar-outline" 
+                                size={20}
+                                color={focused ? color : "#222222"}
+                                focused={focused}
+                                // color="black" 
+                            />
+                        )
+                    }}
+                    component={EventsScreenNavigator} />
+                <Tabs.Screen 
+                    name="Scan QR"
+                    options={{
+                        tabBarIcon: ({ focused, color, size }) => (
+                            <Ionicons 
+                                name="qr-code-outline" 
+                                size={20}
+                                color={focused ? color : "#222222"}
+                                focused={focused}
+                                // color="black" 
+                            />
+                        )
+                    }}
+                    component={SettingsScreen} />
+                <Tabs.Screen
+                    name="Tasks"
+                    options={{
+                        tabBarIcon: ({ focused, color, size }) => (
+                            <Ionicons 
+                                name="list-outline" 
+                                size={20}
+                                color={focused ? color : "#222222"}
+                                focused={focused}
+                                // color="black" 
+                            />
+                        )
+                    }}
                     component={SettingsScreen} />
             </Tabs.Navigator>
+            {/* <Stack.Navigator 
+                screenOptions={{
+                headerShown: false,
+                gestureEnabled : true,
+                gesturedirection: "horizontal",
+                ...TransitionPresets.SlideFromRightIOS
+            }}
+            >
+                <Stack.Screen name="EventDetails" component={EventDetailsScreen}/>
+            </Stack.Navigator> */}
         </SafeAreaView>
 
     )
