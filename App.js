@@ -48,7 +48,6 @@ import { useEffect, useState, useMemo } from 'react';
 const Stack = createStackNavigator();
 
 export default function App() {
-
   // const isSignedIn = false;
   const [user, setUser] = useState(null);
 
