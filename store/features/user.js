@@ -5,11 +5,24 @@
 // Dependencies
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = {
+    fullName: null,
+    officialEmail: null,
+    cogcId: null,
+    avatar: null,
+    defaultAvatar: null,
+    settings: {
+        email: {}
+    }
+};
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
+    reducer: {
+        loginUser: (state, action) => { },
+        logoutUser: (state, action) => { },
+    }
 });
 
 // Exporting Actions.
