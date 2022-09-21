@@ -2,6 +2,7 @@
   "name": "deliveroo",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "license": "MIT",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -18,6 +19,7 @@
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "@react-navigation/stack": "^6.2.2",
+    "@reduxjs/toolkit": "^1.8.5",
     "@twotalltotems/react-native-otp-input": "^1.3.11",
     "axios": "^0.27.2",
     "buffer": "5.0.6",
@@ -42,6 +44,7 @@
     "react-native-screens": "~3.11.1",
     "react-native-svg": "^13.2.0",
     "react-native-web": "0.17.7",
+    "react-redux": "^8.0.2",
     "styled-components": "^5.3.5",
     "sync-storage": "^0.4.2",
     "tailwindcss-react-native": "^1.7.10"
