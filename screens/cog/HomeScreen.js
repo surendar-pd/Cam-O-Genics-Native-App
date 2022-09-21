@@ -74,7 +74,7 @@ const HomeScreen = () => {
                             />
                         )
                     }}
-                    component={SettingsScreen} />
+                    component={QrScreenNavigator} />
                 <Tabs.Screen
                     name="Tasks"
                     options={{
