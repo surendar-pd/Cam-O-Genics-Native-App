@@ -5,6 +5,7 @@ const BASE_URL = isProduction ? "https://cogc.kunalkeshan.dev" : "https://cogc-d
 const config = {
     isProduction,
     BASE_URL,
+    GITHUB_URL: 'https://github.com/surendar-pd/Cam-O-Genics-Native-App/',
 }
 
 
