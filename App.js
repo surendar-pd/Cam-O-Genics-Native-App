@@ -44,6 +44,7 @@ import OtpScreen from './screens/OtpScreen';
 import NewPasswordScreen from './screens/NewPasswordScreen';
 import LottieScreen from './screens/LottieScreen';
 import { useEffect, useState, useMemo } from 'react';
+import AppRoutes from './AppRoutes';
 
 const Stack = createStackNavigator();
 
@@ -96,39 +97,19 @@ export default function App() {
       <NavigationContainer>
         <TailwindProvider>
           <SafeAreaProvider>
-            <Stack.Navigator
+            {/* <Stack.Navigator
               screenOptions={{
                 headerShown: false,
                 gestureEnabled: true,
                 gesturedirection: "horizontal",
                 ...TransitionPresets.SlideFromRightIOS
               }}
-            >
-              {
-                user !== null ? (
-                  <>
-                    <Stack.Screen name="Home" component={HomeScreen} />
-                  </>
-                ) : (
-                  <>
-                    <Stack.Screen name="Welcome" component={WelcomeScreen} />
-                    <Stack.Screen name="Role" component={RoleScreen} />
-                    <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="Signup" component={SignUpScreen} />
-                    <Stack.Screen name="Forgot" component={ForgotPasswordScreen} />
-                    <Stack.Screen name="Clogin" component={CloginScreen} />
-                    <Stack.Screen name="Csignup" component={CsignUpScreen} />
-                    <Stack.Screen name="Otp" component={OtpScreen} />
-                    <Stack.Screen name="Newpassword" component={NewPasswordScreen} />
-                    <Stack.Screen name="Lottie" component={LottieScreen} />
-                    {/* <Stack.Screen name="Home" component={HomeScreen}/> */}
-                  </>
-                )
-              }
-            </Stack.Navigator>
+            > */}
+              <AppRoutes />
+            {/* </Stack.Navigator> */}
           </SafeAreaProvider>
         </TailwindProvider>
-        <StatusBar style="dark" backgroundColor="#C3BEF7" />
+        <StatusBar style="light" backgroundColor="#8a4fff" />
       </NavigationContainer>
     </Provider>
   );

@@ -6,6 +6,7 @@ import ProfileScreen from "./ProfileScreen";
 import EventDetailsScreen from "./EventDetailsScreen";
 import EventsScreen from "./EventsScreen";
 import SettingsScreen from "../SettingsScreen";
+import ScanQrScreen from "./ScanQrScreen";
 
 const Stack = createStackNavigator();  // creates object for Stack Navigator
 
@@ -59,7 +60,7 @@ const QrScreenNavigator = () => {
     }}>
         <Stack.Screen
             name="Qr"
-            component={SettingsScreen}
+            component={ScanQrScreen}
         />
     </Stack.Navigator>
     );

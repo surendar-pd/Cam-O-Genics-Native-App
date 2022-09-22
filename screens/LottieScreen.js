@@ -36,8 +36,8 @@ const LottieScreen = ({route}) => {
             />
             <Text style={{fontFamily:'Montserrat_500Medium'}}>{route.params?.msg}</Text>
             <View className="w-full">
-                <TouchableOpacity onPress={() => navigation.navigate(route.params.nav)} className="w-full flex items-center bg-[#C3BEF7] p-4 rounded">
-                <Text style={{fontFamily: "Montserrat_500Medium"}} className="">Done</Text>
+                <TouchableOpacity onPress={() => navigation.navigate(route.params.nav)} className="w-full flex items-center bg-[#8A4FFF] p-4 rounded">
+                <Text style={{fontFamily: "Montserrat_500Medium"}} className="text-white">Done</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

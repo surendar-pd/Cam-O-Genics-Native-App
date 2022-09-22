@@ -33,7 +33,7 @@ const SignUpScreen = () => {
         try {
             const res = await server({ url: '/api/auth/signup/cog', method: 'post', data: { ...input } })
             console.log(res.data);
-            dispatch(loginUser(res.data.data.loginUser.token))
+            dispatch(loginUser(res.data.data.loginUser))
             // AsyncStorage.setItem('user', (JSON.stringify(res.data.data.loginUser.token)))
             navigation.navigate("Lottie", { msg: "Account created successfuly", nav: "Home" })
         } catch (err) {

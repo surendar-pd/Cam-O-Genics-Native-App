@@ -19,11 +19,11 @@ const WelcomeScreen = () => {
                     {/* <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-lg text-gray-500">What's your role?</Text> */}
                 </View>
                 <View className="w-full flex gap-2">
-                    <TouchableOpacity className="w-full rounded bg-[##C3BEF7] flex-row items-center justify-center p-8">
-                        <Text style={{fontFamily:'Montserrat_500Medium'}}>Open Camera</Text>
+                    <TouchableOpacity className="w-full rounded bg-[#8A4FFF] flex-row items-center justify-center p-8">
+                        <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-white">Open Camera</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("Role")} className="w-full rounded bg-[#C3BEF7] flex-row items-center justify-center p-8">
-                        <Text style={{fontFamily:'Montserrat_500Medium'}}>Login</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate("Role")} className="w-full rounded bg-[#8A4FFF] flex-row items-center justify-center p-8">
+                        <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-white">Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>

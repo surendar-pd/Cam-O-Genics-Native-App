@@ -1,33 +1,16 @@
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../store/features/user';
 
 const SettingsScreen = () => {
 
-    const handleLogout = async () => {
-        try {
-            await AsyncStorage.setItem('user', "false")
-        } catch(e) {
-            console.log(e)
-        }
-        console.log('logged out.')
-    }
+    const dispatch = useDispatch();
 
-    const getData = async () => {
-        try {
-        const token = await AsyncStorage.getItem('user')
-        if(token !== null) {
-            console.log(token)
-        }
-        } catch(e) {
-            console.log(e)
-        }
+    const handleLogout = () => {
+        dispatch(logoutUser())
     }
-    
-    useEffect(() => {
-        getData();
-    },[])
 
     return (
         <View>

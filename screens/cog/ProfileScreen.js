@@ -2,8 +2,12 @@ import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 
 const ProfileScreen = () => {
+
+    const {user} = useSelector(state => state.user)
+    console.log(user?.avatar ?? user?.defaultAvatar)
 
     
     return (
@@ -22,18 +26,21 @@ const ProfileScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View className="w-full flex-1 bg-gray-700 mt-8">
-                <View className="w-full flex-row items-center bg-slate-300  py-4">
+            <View className="w-full flex-1 mt-8">
+                <View className="w-full flex-row items-center py-4">
                     <Image
                         className="w-24 h-24 rounded-full bg-black"
                         source={{
-                            uri: 'https://cdn-icons-png.flaticon.com/512/3006/3006876.png',
+                            uri: `${user?.avatar ?? user?.defaultAvatar}`
                         }}
                     />
                     <View className="mx-4">
-                        <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-xl">Surendar PD</Text>
-                        <Text style={{fontFamily:'Montserrat_500Medium'}}>Photographer</Text>
+                        <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-xl">{user?.fullName}</Text>
+                        <Text style={{fontFamily:'Montserrat_500Medium'}}>{user?.communityIdentities && user?.communityIdentities.length > 0 ? user?.communityIdentities?.join(', ') : 'Select roll'}</Text>
                     </View>
+                </View>
+                <View className="w-full flex-1 bg-gray-700">
+
                 </View>
             </View>
         </View>
