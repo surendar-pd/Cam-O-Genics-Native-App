@@ -9,10 +9,13 @@ import { Ionicons } from '@expo/vector-icons';
 import server from '../../utils/axios';
 // import SyncStorage from 'sync-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../store/features/user';
 
 const LoginScreen = () => {
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
     const [modalVisible, setModalVisible] = useState(false);
     
     const [error, setError] = useState("");
@@ -33,8 +36,7 @@ const LoginScreen = () => {
     const handleCogLogin = async () => {
         try {
             const res = await server({ url: '/api/auth/login', method: 'post', data: { ...input } })
-            console.log(JSON.stringify(res.data.data.loginUser.token))
-            AsyncStorage.setItem('user', "true")
+            dispatch(loginUser(res.data.data.loginUser))
         } catch (err) {
             const { data } = err.response;
             console.log(data)
@@ -174,14 +176,14 @@ const LoginScreen = () => {
                 />
             </View>
             <View className="w-full">
-                <TouchableOpacity onPress={handleCogLogin} className={`w-full flex items-center bg-[#C3BeF7] p-4 rounded`}>
-                <Text style={{fontFamily: "Montserrat_500Medium"}} className="">Login</Text>
+                <TouchableOpacity onPress={handleCogLogin} className={`w-full flex items-center bg-[#8A4FFF] p-4 rounded`}>
+                <Text style={{fontFamily: "Montserrat_500Medium"}} className="text-white">Login</Text>
                 </TouchableOpacity>
             </View>
             <View className="w-full flex-row justify-center">
                 <Text style={{fontFamily: "Montserrat_500Medium"}}>Don't have an account? </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                    <Text style={{fontFamily: "Montserrat_500Medium"}} className="text-[#8a4fff]">Sign Up</Text>
+                    <Text style={{fontFamily: "Montserrat_500Medium"}} className="text-[#8A4FFF]">Sign Up</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

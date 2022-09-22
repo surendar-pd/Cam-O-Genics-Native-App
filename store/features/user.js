@@ -7,29 +7,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
-    user: {
-        fullName: null,
-        officialEmail: null,
-        cogcId: null,
-        avatar: null,
-        defaultAvatar: null,
-        settings: {
-            email: {}
-        }
-    },
+    user: null,
 };
-
-const getUserFromLocalStorage = async () => {
-    let user = await AsyncStorage.getItem('cogcUser');
-    user = user ? JSON.parse(user) : initialState.user;
-    initialState.user = user;
-    return Promise.resolve('User state set successfully!');
-};
-
-getUserFromLocalStorage()
-    .then((res) => {
-        console.log(res);
-    })
 
 const userSlice = createSlice({
     name: 'user',
@@ -43,7 +22,7 @@ const userSlice = createSlice({
             });
         },
         logoutUser: (state, action) => {
-            state.user = initialState.user;
+            state.user = null;
             AsyncStorage.removeItem('cogcUser', () => {
                 console.log('User Logged out!');
             });

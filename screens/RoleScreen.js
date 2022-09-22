@@ -15,15 +15,15 @@ const RoleScreen = () => {
             <View className="w-full">
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-xl text-gray-900">What's your role?</Text>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("Login")} className="mb-2 w-full rounded bg-[#C3BEF7] flex-row items-center justify-between p-8">
-                <Ionicons name="person-outline" size={24} color="black" />
-                <Text style={{fontFamily:'Montserrat_500Medium'}}>Member of COG</Text>
-                <Ionicons name="chevron-forward" size={24} color="black" />
+            <TouchableOpacity onPress={() => navigation.navigate("Login")} className="mb-2 w-full rounded bg-[#8A4FFF] flex-row items-center justify-between p-8">
+                <Ionicons name="person-outline" size={24} color="white" />
+                <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-white">Member of COG</Text>
+                <Ionicons name="chevron-forward" size={24} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate("Clogin")} className="w-full rounded bg-[#C3BEF7] flex-row items-center justify-between p-8">
-                <Ionicons name="people-outline" size={24} color="black" />
-                <Text style={{fontFamily:'Montserrat_500Medium'}}>Member of COGC</Text>
-                <Ionicons name="chevron-forward" size={24} color="black" />
+            <TouchableOpacity onPress={() => navigation.navigate("Clogin")} className="w-full rounded bg-[#8A4FFF] flex-row items-center justify-between p-8">
+                <Ionicons name="people-outline" size={24} color="white" />
+                <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-white">Member of COGC</Text>
+                <Ionicons name="chevron-forward" size={24} color="white" />
             </TouchableOpacity>
         </SafeAreaView>
     )

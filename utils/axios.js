@@ -4,14 +4,15 @@
 
 // Dependencies
 import axios from "axios";
-// import AsyncStorage from '@react-native-community/async-storage';
-import config from "../config"
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import config from "../config";
 
-const server = ({url = '', method = '', auth = false, data = {}}) => {
+
+const server = ({url = '', method = '', auth = false, token = '', data = {}}) => {
     axios.defaults.baseURL = config.BASE_URL;
     if (auth)
         axios.defaults.headers = {
-            Authorization: `Bearer ${'token here'}`,
+            Authorization: `Bearer ${token}`,
         };
     return axios[method](url, data);
 }
