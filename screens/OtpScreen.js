@@ -27,7 +27,7 @@ const OtpScreen = ({route}) => {
     const handleResendOtp = async () => {
         try {
             const response = await server({ url: "/api/auth/forgot-password", method:'post', data: {user}});
-            setOtpExpire(new Date(response.data.data.expiresIn).toString())
+            setOtpExpire(new Date(response.data.data.expiresIn).toString());
             // console.log(response.data.data.id)
         } catch (error) {
             console.log(error.response.data)
