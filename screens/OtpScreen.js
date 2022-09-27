@@ -1,8 +1,8 @@
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState, useMemo } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import OTPTextView from 'react-native-otp-textinput';
-import { useNavigation } from '@react-navigation/native'
 import { formatDistance, format } from 'date-fns'
 import server from '../utils/axios';
 
@@ -31,6 +31,7 @@ const OtpScreen = ({ route }) => {
             // console.log(id)
             const res = await server({ url: '/api/auth/verify-otp', method: 'post', data: { id, otp } });
             console.log(res.data);
+            navigation.navigate('Newpassword', { ...res.data.data.user });
         } catch (error) {
             console.log(error.response.data);
         }
@@ -40,6 +41,7 @@ const OtpScreen = ({ route }) => {
         try {
             const response = await server({ url: "/api/auth/forgot-password", method: 'post', data: { user } });
             setOtpExpire(response.data.data.expiresIn);
+            setResendOtpTime(response.data.data.expiresIn + (1000 * 60))
             // console.log(response.data.data.id)
         } catch (error) {
             console.log(error.response.data)
