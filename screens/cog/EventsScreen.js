@@ -1,10 +1,14 @@
 import { View, Text, Image, FlatList, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
+
 
 
 const EventsScreen = () => {
+
+    const {user} = useSelector(state => state.user)
 
     const navigation = useNavigation()
 
@@ -13,7 +17,7 @@ const EventsScreen = () => {
             <View className="w-full flex-row justify-between">
                 <Text style={{fontFamily:'Montserrat_500Medium'}} className="text-xl">Events</Text>
                 <View className="flex-row items-center gap-6">
-                    <TouchableOpacity>
+                    <TouchableOpacity className={``}>
                         <Ionicons 
                             name="add-outline" 
                             size={24}

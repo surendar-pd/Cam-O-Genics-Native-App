@@ -59,9 +59,9 @@ const AppRoutes = () => {
                         <Stack.Screen name="Forgot" component={ForgotPasswordScreen} />
                         <Stack.Screen name="Clogin" component={CloginScreen} />
                         <Stack.Screen name="Csignup" component={CsignUpScreen} />
-                        <Stack.Screen name="Otp" component={OtpScreen} />
-                        <Stack.Screen name="Newpassword" component={NewPasswordScreen} />
-                        <Stack.Screen name="Lottie" component={LottieScreen} />
+                        <Stack.Screen name="Otp"  component={OtpScreen} />
+                        <Stack.Screen name="Newpassword" options={{gestureEnabled: false }} component={NewPasswordScreen} />
+                        <Stack.Screen name="Lottie" options={{gestureEnabled: false }} component={LottieScreen} />
                     </>
                 }
             </Stack.Navigator>

@@ -11,6 +11,7 @@ const SignUpScreen = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
+    const [error, setError] = useState("");
 
     const [input, setInput] = useState({
         fullName: "",
@@ -26,7 +27,6 @@ const SignUpScreen = () => {
         setError("")
     };
 
-    const [error, setError] = useState("");
 
 
     const handleCogSignup = async () => {
